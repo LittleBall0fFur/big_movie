@@ -14,7 +14,7 @@ class DSVWriter final : private LineWriter {
 
 public:
 
-    DSVWriter(const string& filename) noexcept;
+    DSVWriter(const std::string& filename) noexcept;
 
     DSVWriter(void)             = delete;
     DSVWriter(const DSVWriter&) = delete;

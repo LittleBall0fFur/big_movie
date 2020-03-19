@@ -14,7 +14,7 @@ class DSVReader final : private LineReader {
 
 public:
 
-    DSVReader(const string& filename) noexcept;
+    DSVReader(const std::string& filename) noexcept;
    
     DSVReader(void)             = delete; 
     DSVReader(const DSVReader&) = delete;
