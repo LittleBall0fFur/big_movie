@@ -17,15 +17,42 @@ public:
 
     using Row_T = std::array<std::string, N>;
 
-    DSVReader(const std::string& filename) noexcept;
-   
+    DSVReader(const std::string& filename) noexcept : LineReader(filename){};
+
     DSVReader(void)             = delete;
     DSVReader(const DSVReader&) = delete;
     DSVReader(DSVReader&&)      = delete;
 
-    auto readRow(void) -> Row_T;
+    auto readRow(void) -> Row_T{
+      std::string _temp = "1test_data,11test_data11,test_data,test_data1";
 
-    ~DSVReader(void) noexcept;
+      Row_T array;
+      int currentIndex = 0;
+
+      for(int i = 0; i < _temp.size(); ++i) {
+
+        switch (_temp[i]) {
+          case DELIMITER:
+            currentIndex++;
+            break;
+          case ESCAPE:
+            if((i+1) >= _temp.size() || _temp[(i+1)] != ESCAPE){
+              break;
+            }
+            array[currentIndex] += _temp[i];
+            i += 1;
+            break;
+          default:
+            array[currentIndex] += _temp[i];;
+            break;
+        }
+
+      }
+
+      return array;
+    };
+
+    ~DSVReader(void) noexcept{};
 
 private:
 
