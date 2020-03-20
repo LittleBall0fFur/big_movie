@@ -24,19 +24,25 @@ public:
     DSVReader(DSVReader&&)      = delete;
 
     auto readRow(void) -> Row_T{
-      std::string _temp = "1test_data,11test_data11,test_data,test_data1";
+      std::string _temp = "nm0000001,//Fred Astaire//,1899,1987,/soundtrack,//actor//,miscellaneous/,/tt0072308,tt0053137,tt0043044,tt0050419/";
 
       Row_T array;
       int currentIndex = 0;
+      bool fill_index = false;
 
       for(int i = 0; i < _temp.size(); ++i) {
 
         switch (_temp[i]) {
           case DELIMITER:
-            currentIndex++;
+            if(!fill_index){
+              currentIndex++;
+            }else{
+              array[currentIndex] += _temp[i];;
+            }
             break;
           case ESCAPE:
             if((i+1) >= _temp.size() || _temp[(i+1)] != ESCAPE){
+              fill_index = !fill_index;
               break;
             }
             array[currentIndex] += _temp[i];
