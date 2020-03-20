@@ -17,6 +17,8 @@ public:
     LineReader(const LineReader&) = delete;
     LineReader(LineReader&&)      = delete;
 
+    auto readLine(void) noexcept -> std::string;
+
     ~LineReader(void) noexcept;
 
 private:

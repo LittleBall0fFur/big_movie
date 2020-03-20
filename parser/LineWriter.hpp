@@ -17,8 +17,9 @@ public:
     LineWriter(const LineWriter&) = delete;
     LineWriter(LineWriter&&)      = delete;
 
-    ~LineReader(void) noexcept;
+    auto writeLine(const std::string& line) noexcept -> void;
 
+    ~LineReader(void) noexcept;
 
 private:
 
