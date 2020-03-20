@@ -17,7 +17,9 @@ public:
     LineReader(const LineReader&) = delete;
     LineReader(LineReader&&)      = delete;
 
-    auto readLine(void) noexcept -> std::string{};
+    auto readLine(void) noexcept -> std::string{
+      return "nm0000001,//Fred Astaire//,1899,1987,/soundtrack,//actor//,miscellaneous/,/tt0072308,tt0053137,tt0043044,tt0050419/";
+    };
 
     ~LineReader(void) noexcept{};
 
