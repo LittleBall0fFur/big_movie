@@ -9,7 +9,7 @@ namespace utility {
 
 inline namespace io {
 
-template<char DELIMITER, char ESCAPE = '\0'>
+template<int N, char DELIMITER, char ESCAPE = '\0'>
 class DSVReader final : private LineReader {
 
 public:
@@ -28,8 +28,10 @@ private:
 
 };
 
-using CSVReader = DSVReader<';', '"'>;
-using TSVReader = DSVReader<'\t'>;
+template<int N>
+using CSVReader = DSVReader<N, ';', '"'>;
+template<int N>
+using TSVReader = DSVReader<N, '\t'>;
 
 }
 

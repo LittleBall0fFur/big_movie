@@ -9,7 +9,7 @@ namespace utility {
 
 inline namespace io {
 
-template<char DELIMITER, char ESCAPE = '\0'>
+template<int N, char DELIMITER, char ESCAPE = '\0'>
 class DSVWriter final : private LineWriter {
 
 public:
@@ -28,8 +28,10 @@ private:
 
 };
 
-using CSVWriter = DSVWriter<';', '"'>;
-using TSVWriter = DSVWriter<'\t'>
+template<int N>
+using CSVWriter = DSVWriter<N, ';', '"'>;
+template<int N>
+using TSVWriter = DSVWriter<N, '\t'>
 
 }
 
