@@ -2,29 +2,33 @@
 #define UTILITY_IO_DSVREADER_HEADER
 
 #include <array>
+#include <fstream>
 #include <string>
-
-#include "./LineReader.hpp"
 
 namespace utility {
 
 inline namespace io {
 
 template<int N, char DELIMITER, char ESCAPE = '\0'>
-class DSVReader final : private LineReader {
+class DSVReader final {
 
 public:
 
     using Row_T = std::array<std::string, N>;
 
-    DSVReader(const std::string& filename) noexcept : LineReader(filename){};
+    DSVReader(const std::string& filename) noexcept : input(filename) {}
 
     DSVReader(void)             = delete;
     DSVReader(const DSVReader&) = delete;
-    DSVReader(DSVReader&&)      = delete;
+    DSVReader(DSVReader&&) = default;
 
-    auto readRow(void) -> Row_T{
-      std::string inputString = readLine();
+    auto hasRows(void) const noexcept -> bool {
+        return bool(input);
+    }
+
+    auto readRow(void) noexcept -> Row_T {
+      std::string inputString;
+      getline(input, inputString);
 
       Row_T array;
       int currentIndex = 0;
@@ -55,18 +59,18 @@ public:
       }
 
       return array;
-    };
+    }
 
-    ~DSVReader(void) noexcept{};
+    ~DSVReader(void) noexcept = default;
 
 private:
 
-
+    std::ifstream input;
 
 };
 
 template<int N>
-using CSVReader = DSVReader<N, ';', '"'>;
+using CSVReader = DSVReader<N, ',', '"'>;
 template<int N>
 using TSVReader = DSVReader<N, '\t'>;
 

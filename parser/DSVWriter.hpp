@@ -34,7 +34,7 @@ private:
 };
 
 template<int N>
-using CSVWriter = DSVWriter<N, ';', '"'>;
+using CSVWriter = DSVWriter<N, ',', '"'>;
 template<int N>
 using TSVWriter = DSVWriter<N, '\t'>;
 
