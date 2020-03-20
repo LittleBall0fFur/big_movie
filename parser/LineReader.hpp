@@ -11,15 +11,15 @@ class LineReader {
 
 public:
 
-    LineReader(const std::string& filename) noexcept;
+    LineReader(const std::string& filename) noexcept{};
 
     LineReader(void)              = delete;
     LineReader(const LineReader&) = delete;
     LineReader(LineReader&&)      = delete;
 
-    auto readLine(void) noexcept -> std::string;
+    auto readLine(void) noexcept -> std::string{};
 
-    ~LineReader(void) noexcept;
+    ~LineReader(void) noexcept{};
 
 private:
 
