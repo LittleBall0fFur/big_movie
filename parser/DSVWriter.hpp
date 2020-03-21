@@ -40,7 +40,7 @@ using TSVWriter = DSVWriter<N, '\t'>;
 
 template<int N, char DELIMITER, char ESCAPE>
 DSVWriter<N, DELIMITER, ESCAPE>::DSVWriter(const std::string& filename) noexcept {
-    output = std::ofstream(filename);
+    output = std::ofstream(filename, std::ios::binary);
 }
 
 template<int N, char DELIMITER, char ESCAPE>
