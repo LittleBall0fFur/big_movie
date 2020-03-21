@@ -18,47 +18,48 @@ public:
 
     DSVReader(const std::string& filename) noexcept : input(filename) {}
 
-    DSVReader(void)             = delete;
+    DSVReader(void) = delete;
     DSVReader(const DSVReader&) = delete;
     DSVReader(DSVReader&&) = default;
 
-    auto hasRows(void) const noexcept -> bool {
-        return bool(input);
+    auto hasRows(void) noexcept -> bool {
+        return input.peek() != EOF;
     }
 
     auto readRow(void) noexcept -> Row_T {
-      std::string inputString;
-      getline(input, inputString);
+        std::string inputString;
+        getline(input, inputString);
 
-      Row_T array;
-      int currentIndex = 0;
-      bool fill_index = false;
+        Row_T array;
+        int currentIndex = 0;
+        bool fill_index = false;
 
-      for(int i = 0; i < inputString.size(); ++i) {
+        for(int i = 0; i < inputString.size(); ++i) {
+            switch (inputString[i]) {
+            case DELIMITER:
+                if(!fill_index){
+                    currentIndex++;
+                } else {
+                    array[currentIndex] += inputString[i];;
+                }
+                break;
 
-        switch (inputString[i]) {
-          case DELIMITER:
-            if(!fill_index){
-              currentIndex++;
-            }else{
-              array[currentIndex] += inputString[i];;
+            case ESCAPE:
+                if((i+1) >= inputString.size() || inputString[(i+1)] != ESCAPE){
+                    fill_index = !fill_index;
+                    break;
+                }
+                array[currentIndex] += inputString[i];
+                i += 1;
+                break;
+
+            default:
+                array[currentIndex] += inputString[i];
+                break;
             }
-            break;
-          case ESCAPE:
-            if((i+1) >= inputString.size() || inputString[(i+1)] != ESCAPE){
-              fill_index = !fill_index;
-              break;
-            }
-            array[currentIndex] += inputString[i];
-            i += 1;
-            break;
-          default:
-            array[currentIndex] += inputString[i];
-            break;
         }
-      }
 
-      return array;
+        return array;
     }
 
     ~DSVReader(void) noexcept = default;

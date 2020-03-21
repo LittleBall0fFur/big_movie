@@ -18,9 +18,8 @@ public:
 
     DSVWriter(const std::string& filename) noexcept;
 
-    DSVWriter(void)             = delete;
+    DSVWriter(void) = delete;
     DSVWriter(const DSVWriter&) = delete;
-
     DSVWriter(DSVWriter&&) = default;
 
     auto writeRow(const Row_T& row) noexcept -> void;
