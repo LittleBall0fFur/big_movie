@@ -64,10 +64,10 @@ auto DSVReader<N, DELIMITER, ESCAPE>::readRow(void) noexcept -> Row_T {
     int currentIndex = 0;
     bool fill_index = false;
 
-    for(int i = 0; i < inputString.size(); ++i) {
+    for (int i = 0; i < inputString.size(); ++i) {
         switch (inputString[i]) {
         case DELIMITER:
-            if(!fill_index){
+            if(!fill_index) {
                 currentIndex++;
             } else {
                 array[currentIndex] += inputString[i];;
@@ -75,7 +75,7 @@ auto DSVReader<N, DELIMITER, ESCAPE>::readRow(void) noexcept -> Row_T {
             break;
 
         case ESCAPE:
-            if((i+1) >= inputString.size() || inputString[(i+1)] != ESCAPE){
+            if ((i+1) >= inputString.size() || inputString[(i+1)] != ESCAPE) {
                 fill_index = !fill_index;
                 break;
             }
