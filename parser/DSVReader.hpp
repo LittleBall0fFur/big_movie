@@ -67,7 +67,7 @@ auto DSVReader<N, DELIMITER, ESCAPE>::readRow(void) noexcept -> Row_T {
     for (int i = 0; i < inputString.size(); ++i) {
         switch (inputString[i]) {
         case DELIMITER:
-            if(!fill_index) {
+            if (!fill_index) {
                 currentIndex++;
             } else {
                 array[currentIndex] += inputString[i];;
