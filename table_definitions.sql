@@ -121,8 +121,8 @@ CREATE TABLE IF NOT EXISTS title$directors (
 CREATE TABLE IF NOT EXISTS title$genres (
 	title_id char(10) NOT NULL,
 	genre varchar(32) NOT NULL,
-	PRIMARY KEY (title_id),
-	FOREIGN KEY (title_id, genre)
+	PRIMARY KEY (title_id, genre),
+	FOREIGN KEY (title_id)
 		REFERENCES title(id)
 		ON DELETE CASCADE
 		ON UPDATE CASCADE
