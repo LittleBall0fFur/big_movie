@@ -65,7 +65,7 @@ CREATE TABLE IF NOT EXISTS title$akas (
 	types varchar(32),
 	attributes varchar(128),
 	is_original boolean,
-	PRIMARY KEY (title_id, title),
+	PRIMARY KEY (title_id, ordering),
 	FOREIGN KEY (title_id)
 		REFERENCES title(id)
 		ON DELETE CASCADE
@@ -122,7 +122,7 @@ CREATE TABLE IF NOT EXISTS title$genres (
 	title_id char(10) NOT NULL,
 	genre varchar(32) NOT NULL,
 	PRIMARY KEY (title_id),
-	FOREIGN KEY (title_id)
+	FOREIGN KEY (title_id, genre)
 		REFERENCES title(id)
 		ON DELETE CASCADE
 		ON UPDATE CASCADE
