@@ -93,7 +93,7 @@ CREATE TABLE IF NOT EXISTS title$principals (
 	category varchar(32) NOT NULL,
 	job varchar(512),
 	characters varchar(512),
-	PRIMARY KEY (title_id, person_id),
+	PRIMARY KEY (title_id, ordering),
 	FOREIGN KEY (title_id)
 		REFERENCES title(id)
 		ON DELETE CASCADE
