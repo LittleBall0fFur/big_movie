@@ -8,6 +8,6 @@ copy title$rating       from 'C:/csv/title$rating.csv'          (FORMAT csv, HEA
 copy title$akas         from 'C:/csv/title$akas.csv'            (FORMAT csv, HEADER, NULL '\N', FORCE_NULL (region, language, types, attributes, is_original));
 copy title$writers      from 'C:/csv/title$writers.csv'         (FORMAT csv, HEADER, NULL '\N');
 copy title$principals   from 'C:/csv/title$principals_0.csv'    (FORMAT csv, HEADER, NULL '\N', FORCE_NULL (job, characters));
-copy title$principals   from 'C:/csv/title$principals_1.csv'    (FORMAT csv, HEADER, NULL '\N', FORCE_NULL (job, characters));
+copy title$principals   from 'C:/csv/title$principals_1.csv'    (FORMAT csv,         NULL '\N', FORCE_NULL (job, characters));
 copy title$directors    from 'C:/csv/title$directors.csv'       (FORMAT csv, HEADER, NULL '\N');
 copy title$genres       from 'C:/csv/title$genres.csv'          (FORMAT csv, HEADER, NULL '\N');
