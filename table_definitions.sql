@@ -19,20 +19,6 @@ CREATE TABLE IF NOT EXISTS title (
 	PRIMARY KEY (id)
 );
 
-CREATE TABLE IF NOT EXISTS person$titles (
-	person_id char(10) NOT NULL,
-	title_id char(10) NOT NULL,
-	PRIMARY KEY (person_id, title_id),
-	FOREIGN KEY (person_id)
-		REFERENCES person(id)
-		ON DELETE CASCADE
-		ON UPDATE CASCADE,
-	FOREIGN KEY (title_id)
-		REFERENCES title(id)
-		ON DELETE CASCADE
-		ON UPDATE CASCADE
-);
-
 CREATE TABLE IF NOT EXISTS episode (
 	id char(10) NOT NULL,
 	parent_id char(10) NOT NULL,
@@ -44,6 +30,20 @@ CREATE TABLE IF NOT EXISTS episode (
 		ON DELETE CASCADE
 		ON UPDATE CASCADE,
 	FOREIGN KEY (parent_id)
+		REFERENCES title(id)
+		ON DELETE CASCADE
+		ON UPDATE CASCADE
+);
+
+CREATE TABLE IF NOT EXISTS person$titles (
+	person_id char(10) NOT NULL,
+	title_id char(10) NOT NULL,
+	PRIMARY KEY (person_id, title_id),
+	FOREIGN KEY (person_id)
+		REFERENCES person(id)
+		ON DELETE CASCADE
+		ON UPDATE CASCADE,
+	FOREIGN KEY (title_id)
 		REFERENCES title(id)
 		ON DELETE CASCADE
 		ON UPDATE CASCADE
