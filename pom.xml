@@ -8,5 +8,52 @@
     <artifactId>bmdb</artifactId>
     <version>0.0.1-SNAPSHOT</version>
 
+    <dependencies>
+        <!-- PostgreSQL dependency -->
+        <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <version>42.2.11.jre6</version>
+        </dependency>
+
+        <!-- JavaFX-base dependency -->
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-base</artifactId>
+            <version>14</version>
+        </dependency>
+
+        <!-- JavaFX-graphics dependency -->
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-graphics</artifactId>
+            <version>14</version>
+        </dependency>
+
+        <!-- JavaFX-controls dependency -->
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-controls</artifactId>
+            <version>14</version>
+        </dependency>
+
+        <!-- BootstrapFX dependency -->
+        <dependency>
+            <groupId>org.kordamp.bootstrapfx</groupId>
+            <artifactId>bootstrapfx-core</artifactId>
+            <version>0.2.4</version>
+        </dependency>
+
+    </dependencies>
+
+    <repositories>
+        <!-- BootstrapFX repository -->
+        <repository>
+            <id>central</id>
+            <name>jcenter</name>
+            <url>https://jcenter.bintray.com</url>
+        </repository>
+    </repositories>
 
 </project>
+
