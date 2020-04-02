@@ -1,7 +1,7 @@
 package com.nhlstenden.bmdb;
 
-import com.nhlstenden.bmdb.GUI.SceneFactory;
-import com.nhlstenden.bmdb.GUI.SceneManager;
+import com.nhlstenden.bmdb.gui.SceneFactory;
+import com.nhlstenden.bmdb.gui.SceneManager;
 import com.nhlstenden.bmdb.database.DatabaseConnection;
 
 // import JavaFX

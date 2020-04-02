@@ -1,8 +1,6 @@
-package com.nhlstenden.bmdb.GUI;
+package com.nhlstenden.bmdb.gui;
 
-import javafx.application.Application;
 import javafx.event.EventHandler;
-import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
@@ -11,9 +9,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
 import javafx.scene.text.Text;
-import javafx.stage.Stage;
 import org.kordamp.bootstrapfx.scene.layout.Panel;
 
 import java.io.FileInputStream;
