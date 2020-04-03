@@ -1,16 +1,11 @@
 package com.nhlstenden.bmdb;
 
+import com.nhlstenden.bmdb.database.DatabaseConnection;
 import com.nhlstenden.bmdb.gui.SceneFactory;
 import com.nhlstenden.bmdb.gui.SceneManager;
-import com.nhlstenden.bmdb.database.DatabaseConnection;
-
-// import JavaFX
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-
-// import normal java shit
-
 
 public class Main extends Application {
 

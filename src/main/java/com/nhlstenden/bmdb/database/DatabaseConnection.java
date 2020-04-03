@@ -1,8 +1,13 @@
 package com.nhlstenden.bmdb.database;
 
-import java.sql.*;
-import java.util.*;
-
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Properties;
 
 public class DatabaseConnection {
     private static DatabaseConnection _instance = null;

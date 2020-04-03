@@ -10,8 +10,6 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import org.kordamp.bootstrapfx.scene.layout.Panel;
 
-
-
 public class GuiFactory {
 
     public enum ButtonStyle{ // btn-default, btn-primary, btn-success, btn-info, btn-warning, btn-danger
