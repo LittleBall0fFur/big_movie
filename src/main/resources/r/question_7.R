@@ -27,7 +27,7 @@ DBI::dbClearResult(result);
 
 DBI::dbDisconnect(connection);
 
-png(file = "./src/main/resources/r/output.png");
+png(file = "./src/main/resources/r/question_7.png");
 
 barplot(data$average_rating,
         xlab='Genre', ylab='Average Rating (1990 - now)',
