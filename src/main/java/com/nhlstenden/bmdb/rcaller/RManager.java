@@ -2,52 +2,60 @@ package com.nhlstenden.bmdb.rcaller;
 
 import com.github.rcaller.rstuff.RCaller;
 import com.github.rcaller.rstuff.RCode;
-import examples.Main;
+
 import javafx.scene.image.Image;
 
-import javax.swing.*;
 import java.io.*;
-import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public final class RManager {
 
-    public static RManager _instance = null;
-    private static RCode code;
     private static RCaller caller;
 
-    static{
+    static {
         try {
             caller = RCaller.create();
-            code = RCode.create();
-
-            System.out.println("succeeded to init RCaller and/or RCode");
-        } catch(Exception e) {
-            e.getMessage();
+            new File("./plots/").mkdir();
+        } catch (Exception e) {
+            throw new ExceptionInInitializerError(e);
         }
     }
 
-    private RManager(){}
+    private RManager() {}
 
     public static Image getRPlot(String file_name) {
-        LinesToRCode(file_name);
-        caller.setRCode(code);
+        try {
+            return tryGetRPlot(file_name);
+        } catch(IOException e) {
+            Logger.getGlobal().log(Level.SEVERE, e.toString());
+            return null;
+        }
+    }
+
+    private static Image tryGetRPlot(String file_name) throws IOException {
+        caller.setRCode(loadRScript(file_name));
         caller.runOnly();
-
-        code = RCode.create();
-
         return new Image("file:./plots/" + file_name + ".png");
     }
 
-    private static void LinesToRCode (String file_name) {
-        InputStream stream = RManager.class.getResourceAsStream("/r/" + file_name + ".R");
-        InputStreamReader streamReader = new InputStreamReader(stream);
-        try (BufferedReader reader = new BufferedReader(streamReader)) {
-            for (String line; (line = reader.readLine()) != null;) {
-                System.out.println(line);
-                code.addRCode(line);
-            }
-        } catch (Exception e) {
+    private static RCode loadRScript(String file_name) throws IOException {
+        RCode code = RCode.create();
 
+        try (InputStream stream = RManager.class.getResourceAsStream("/r/" + file_name + ".R");
+             InputStreamReader streamReader = new InputStreamReader(stream);
+             BufferedReader reader = new BufferedReader(streamReader)) {
+
+            for (String line; (line = reader.readLine()) != null; )
+                code.addRCode(line);
+
+        } catch (Exception e) {
+            throw new IOException("Failed to load R Script: " + file_name + ".R", e);
         }
+
+        return code;
     }
 }
