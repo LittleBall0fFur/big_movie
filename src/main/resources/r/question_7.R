@@ -8,7 +8,7 @@ connection <- DBI::dbConnect(odbc::odbc(),
                              pwd    = 'B1g_M0v13_D4t4b4s3_P455w0rd_F0r_5ch00l');
 
 result <- DBI::dbSendQuery(connection,
-  "SELECT
+                           "SELECT
       title$genres.genre,
       AVG(title$rating.average_rating) AS average_rating
    FROM
@@ -19,7 +19,7 @@ result <- DBI::dbSendQuery(connection,
    GROUP BY
       title$genres.genre
    ORDER BY
-  	  title$genres.genre DESC;"
+        title$genres.genre DESC;"
 );
 
 data <- DBI::dbFetch(result);
@@ -27,6 +27,12 @@ DBI::dbClearResult(result);
 
 DBI::dbDisconnect(connection);
 
+png(file = "./src/main/resources/r/output.png");
+
 barplot(data$average_rating,
         xlab='Genre', ylab='Average Rating (1990 - now)',
         names.arg=data$genre, las=2);
+
+dev.off();
+
+getwd();

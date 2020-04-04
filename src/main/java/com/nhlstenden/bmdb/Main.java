@@ -3,6 +3,7 @@ package com.nhlstenden.bmdb;
 import com.nhlstenden.bmdb.database.DatabaseConnection;
 import com.nhlstenden.bmdb.gui.SceneFactory;
 import com.nhlstenden.bmdb.gui.SceneManager;
+import com.nhlstenden.bmdb.rcaller.RManager;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -18,7 +19,6 @@ public class Main extends Application {
             System.out.println("[DATABASE] Connection false");
 
         //Map<String, String[]> list = DatabaseConnection.getInstance().query("");
-
         launch(args);
     }
 

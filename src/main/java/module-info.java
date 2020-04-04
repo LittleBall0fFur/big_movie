@@ -7,6 +7,7 @@ module com.nhlstenden.bmdb {
     requires org.kordamp.bootstrapfx.core;
 
     requires RCaller;
+    requires java.desktop;
 
     exports com.nhlstenden.bmdb;
 }
