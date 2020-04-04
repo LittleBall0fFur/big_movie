@@ -28,22 +28,17 @@ public final class RManager {
 
     private RManager(){}
 
-    public static Image getRPlot(String file_name) throws IOException {
-        //To-Do read file and insert Rcode per file line
+    public static Image getRPlot(String file_name) {
         LinesToRCode(file_name);
-
-        File file = code.startPlot();
-
-        LinesToRCode(file_name);
-        code.endPlot();
         caller.setRCode(code);
-        caller.runAndReturnResult("data");
+        caller.runOnly();
 
         code = RCode.create();
-        return new Image("/r/" + file_name + ".png");
+
+        return new Image("file:./plots/" + file_name + ".png");
     }
 
-    private static void LinesToRCode (String file_name) throws IOException {
+    private static void LinesToRCode (String file_name) {
         InputStream stream = RManager.class.getResourceAsStream("/r/" + file_name + ".R");
         InputStreamReader streamReader = new InputStreamReader(stream);
         try (BufferedReader reader = new BufferedReader(streamReader)) {
