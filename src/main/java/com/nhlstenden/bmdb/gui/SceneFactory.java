@@ -59,7 +59,7 @@ public class SceneFactory {
         return sc;
     }
 
-    public static Scene createQuestionScreen(String _title, String _imageLocation, String _text){
+    public static Scene createQuestionScreen(String _title, String _plotName, String _text){
         // create panel
         Panel panel = GuiFactory.createPanel(GuiFactory.PanelStyle.panel_primary);
 
@@ -73,7 +73,7 @@ public class SceneFactory {
 
         ImageView graphImage = null;
         try{
-            Image imageDisplay = RManager.getRPlot("question_7");
+            Image imageDisplay = RManager.getRPlot(_plotName);
             graphImage = new ImageView(imageDisplay);
 
             graphImage.setFitHeight(450);
