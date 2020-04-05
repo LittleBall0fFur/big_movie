@@ -77,6 +77,11 @@ public class SceneManager {
         _stage.show();
     }
 
+    public void activateLoading(Scene _scene){
+        _stage.setScene(_scene);
+        _stage.show();
+    }
+
     /**
      * Get current scene
      * @return scene id

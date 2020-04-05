@@ -3,6 +3,7 @@ package com.nhlstenden.bmdb.gui;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
+import javafx.scene.control.ProgressIndicator;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.paint.Color;
@@ -55,6 +56,14 @@ public class GuiFactory {
         t.setFont(Font.font (_fontName, _fontSize));
 
         return t;
+    }
+
+    public static ProgressIndicator createProgressIndicator(float _value, int _w, int _h){
+        ProgressIndicator pi = new ProgressIndicator(_value);
+        pi.setMinWidth(_w);
+        pi.setMinHeight(_h);
+
+        return pi;
     }
 
     public static BorderPane createBorderPane(int _padding){

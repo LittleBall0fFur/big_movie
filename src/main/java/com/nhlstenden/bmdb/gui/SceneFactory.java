@@ -5,6 +5,7 @@ import com.nhlstenden.bmdb.rcaller.RManager;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ProgressIndicator;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -70,6 +71,32 @@ public class SceneFactory {
         return sc;
     }
 
+    public static Scene createLoadingScreen(String _title, ProgressIndicator _progressIndicator){
+        // create panel
+        Panel panel = GuiFactory.createPanel(GuiFactory.PanelStyle.panel_primary);
+
+        // create content menus
+        BorderPane contentHeader = GuiFactory.createBorderPane(5);
+        BorderPane content = GuiFactory.createBorderPane(5);
+        BorderPane contentFooter = GuiFactory.createBorderPane(5);
+
+        // create header text
+        Text headerText = GuiFactory.createText(_title, Color.BLACK, 20);
+
+        // add objects to contents
+        contentHeader.setCenter(headerText);
+        content.setCenter(_progressIndicator);
+
+        // add content menus to panel
+        panel.setHeading(contentHeader);
+        panel.setBody(content);
+        panel.setFooter(contentFooter);
+
+        Scene sc = new Scene(panel);
+        sc.getStylesheets().add("org/kordamp/bootstrapfx/bootstrapfx.css");
+        return sc;
+    }
+
     public static Scene createQuestionScreen(String _title, String _plotName) throws URISyntaxException, IOException {
         // create panel
         Panel panel = GuiFactory.createPanel(GuiFactory.PanelStyle.panel_primary);
@@ -90,14 +117,13 @@ public class SceneFactory {
             graphImage.setFitHeight(450);
             graphImage.setFitWidth(350);
             graphImage.setPreserveRatio(true);
-
         }catch(Exception e){
             System.out.println(e);
         }
 
         // TODO: add this to GuiFactory with proper size
         //Read the analysis text file and set it in the text object of the scene
-        String question_text = Files.readString(Paths.get(SceneFactory.class.getClassLoader().getResource("scene_texts/" + _plotName + ".txt").toURI()), StandardCharsets.UTF_8);
+        String question_text = "blah"; //Files.readString(Paths.get(SceneFactory.class.getClassLoader().getResource("scene_texts/" + _plotName + ".txt").toURI()), StandardCharsets.UTF_8);
         TextArea cssEditorFld = new TextArea(question_text);
         cssEditorFld.setPrefRowCount(10);
         cssEditorFld.setPrefColumnCount(100);
@@ -111,6 +137,8 @@ public class SceneFactory {
         Button buttonPrevious  = GuiFactory.createButton("Previous", GuiFactory.ButtonStyle.btn_primary, new EventHandler<MouseEvent>() {
             @Override public void handle(MouseEvent e) {
                 SceneManager.getInstance().previous();
+
+                displayMessageObserver(headerText);
             }
         });
         Text footerText = GuiFactory.createText("Move though the scene's by using these buttons!", Color.BLACK, 18);
@@ -118,6 +146,7 @@ public class SceneFactory {
             @Override public void handle(MouseEvent e) {
                 SceneManager.getInstance().next();
 
+                displayMessageObserver(headerText);
             }
         });
 
