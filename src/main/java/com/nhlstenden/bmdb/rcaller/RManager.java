@@ -14,12 +14,9 @@ import java.util.logging.Logger;
 
 public final class RManager {
 
-    private static RCaller caller;
-
     static {
         try {
-            caller = RCaller.create();
-            getRPlot("init");
+            executeRScript("init");
             new File("./plots/").mkdir();
         } catch (Exception e) {
             throw new ExceptionInInitializerError(e);
@@ -38,9 +35,16 @@ public final class RManager {
     }
 
     private static Image tryGetRPlot(String file_name) throws IOException {
+        executeRScript(file_name);
+        return new Image("file:./plots/" + file_name + ".png");
+    }
+
+    private static void executeRScript(String file_name) throws IOException {
+        RCaller caller = RCaller.create();
         caller.setRCode(loadRScript(file_name));
         caller.runOnly();
-        return new Image("file:./plots/" + file_name + ".png");
+
+        return;
     }
 
     private static RCode loadRScript(String file_name) throws IOException {
@@ -59,4 +63,5 @@ public final class RManager {
 
         return code;
     }
+
 }
