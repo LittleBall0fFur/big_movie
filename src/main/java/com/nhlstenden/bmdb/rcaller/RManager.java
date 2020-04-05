@@ -19,6 +19,7 @@ public final class RManager {
     static {
         try {
             caller = RCaller.create();
+            getRPlot("init");
             new File("./plots/").mkdir();
         } catch (Exception e) {
             throw new ExceptionInInitializerError(e);
