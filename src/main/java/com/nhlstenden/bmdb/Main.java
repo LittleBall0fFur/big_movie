@@ -16,7 +16,6 @@ import java.net.URISyntaxException;
 public class Main extends Application {
 
     public static MyTopic topic = new MyTopic();
-    public static String[] facts = new String[10];
 
     public static void main(String args[]) {
         System.out.println("Start application!");
@@ -48,7 +47,7 @@ public class Main extends Application {
         Scene scq6 = SceneFactory.createQuestionScreen("Question Screen", "question_6");
         Scene scq7 = SceneFactory.createQuestionScreen("Question Screen", "question_7");
         Scene scq8 = SceneFactory.createQuestionScreen("Question Screen", "question_8");
-        Scene scq9 = SceneFactory.createQuestionScreen("Question Screen", "question_9");*/
+        Scene scq9 = SceneFactory.createQuestionScreen("Question Screen", "question_9");
 
         //Create end screen
         Scene sc2 = SceneFactory.createTempScene("End");
