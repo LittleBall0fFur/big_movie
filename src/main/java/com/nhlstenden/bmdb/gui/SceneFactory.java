@@ -1,5 +1,6 @@
 package com.nhlstenden.bmdb.gui;
 
+import com.nhlstenden.bmdb.rcaller.RManager;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -58,7 +59,7 @@ public class SceneFactory {
         return sc;
     }
 
-    public static Scene createQuestionScreen(String _title, String _imageLocation, String _text){
+    public static Scene createQuestionScreen(String _title, String _plotName, String _text){
         // create panel
         Panel panel = GuiFactory.createPanel(GuiFactory.PanelStyle.panel_primary);
 
@@ -72,7 +73,7 @@ public class SceneFactory {
 
         ImageView graphImage = null;
         try{
-            Image imageDisplay = new Image(new FileInputStream("graph.png"));
+            Image imageDisplay = RManager.getRPlot(_plotName);
             graphImage = new ImageView(imageDisplay);
 
             graphImage.setFitHeight(450);
