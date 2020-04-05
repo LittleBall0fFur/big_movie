@@ -9,6 +9,8 @@ import javafx.stage.Stage;
 
 public class Main extends Application {
 
+    private static MyTopic topic = new MyTopic();
+
     public static void main(String args[]) {
         System.out.println("Start application!");
         DatabaseConnection.getInstance().connect();
@@ -19,11 +21,26 @@ public class Main extends Application {
 
         //Map<String, String[]> list = DatabaseConnection.getInstance().query("");
 
-        ConcreteObservable observable = new ConcreteObservable();
-        ConcreteObserver observer1 = new ConcreteObserver(observable);
-        ConcreteObserver observer2 = new ConcreteObserver(observable);
+        //create observers
+        Observer obj1 = new MyTopicSubscriber("Obj1");
+        Observer obj2 = new MyTopicSubscriber("Obj2");
+        Observer obj3 = new MyTopicSubscriber("Obj3");
 
-        observable.notifier();
+        //register observers to the subject
+        topic.register(obj1);
+        topic.register(obj2);
+        topic.register(obj3);
+
+        //attach observer to subject
+        obj1.setSubject(topic);
+        obj2.setSubject(topic);
+        obj3.setSubject(topic);
+
+        //check if any update is available
+        obj1.update();
+
+        //now send message to subject
+        topic.postMessage("New Message");
 
         launch(args);
     }
