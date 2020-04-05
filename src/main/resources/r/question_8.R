@@ -29,6 +29,6 @@ data <- executeQuery("
     GROUP BY genre;
 ");
 
-png(filename='./plots/question_8.png');
+png(filename='./plots/question_8.png', width = 480, height = 480);
 ggplot(data, aes(x=genre, y=average_seasons, fill=genre)) + geom_bar(stat='identity');
 dev.off();

@@ -35,9 +35,11 @@ public class Main extends Application {
     public void start(Stage _stage) throws IOException, URISyntaxException {
         SceneManager.getInstance().init(_stage, "Windows Title", 800, 600, false);
 
+        //Create welcome scene
         Scene sc1 = SceneFactory.createTempScene("Welcome!");
 
-        /*Scene scq0 = SceneFactory.createQuestionScreen("Question Screen", "question_0");
+        //Create question scene's
+        Scene scq0 = SceneFactory.createQuestionScreen("Question Screen", "question_0");
         Scene scq1 = SceneFactory.createQuestionScreen("Question Screen", "question_1");
         Scene scq2 = SceneFactory.createQuestionScreen("Question Screen", "question_2");
         Scene scq3 = SceneFactory.createQuestionScreen("Question Screen", "question_3");
@@ -48,9 +50,12 @@ public class Main extends Application {
         Scene scq8 = SceneFactory.createQuestionScreen("Question Screen", "question_8");
         Scene scq9 = SceneFactory.createQuestionScreen("Question Screen", "question_9");*/
 
+        //Create end screen
         Scene sc2 = SceneFactory.createTempScene("End");
 
-        SceneManager.getInstance().addScenes(sc1, /*scq0, scq1, scq2, scq3, scq4, scq5, scq6, scq7, scq8, scq9,*/ sc2);
+        //Add scene's to SceneManager in order
+        SceneManager.getInstance().addScenes(sc1, scq0, scq1, scq2, scq3, scq4, scq5, scq6, scq7, scq8, scq9, sc2);
+        //Show the scene's in order
         SceneManager.getInstance().show();
 
         // create observer

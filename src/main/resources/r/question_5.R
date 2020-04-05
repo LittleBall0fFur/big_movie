@@ -37,6 +37,6 @@ data <- executeQuery("
 
 data$total_episodes <- as.numeric(data$total_episodes);
 
-png(filename='./plots/question_5.png');
+png(filename='./plots/question_5.png', width = 480, height = 480);
 ggplot(data, aes(x=total_episodes, y=average_rating)) + geom_point();
 dev.off();

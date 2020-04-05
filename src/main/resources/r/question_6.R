@@ -37,6 +37,6 @@ data <- executeQuery("
         5000;
 ");
 
-png(filename='./plots/question_6.png');
+png(filename='./plots/question_6.png', width = 480, height = 480);
 ggplot(data, aes(x=directors_age, y=average_rating)) + geom_point();
 dev.off();

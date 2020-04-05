@@ -96,6 +96,7 @@ public class SceneFactory {
         }
 
         // TODO: add this to GuiFactory with proper size
+        //Read the analysis text file and set it in the text object of the scene
         String question_text = Files.readString(Paths.get(SceneFactory.class.getClassLoader().getResource("scene_texts/" + _plotName + ".txt").toURI()), StandardCharsets.UTF_8);
         TextArea cssEditorFld = new TextArea(question_text);
         cssEditorFld.setPrefRowCount(10);
