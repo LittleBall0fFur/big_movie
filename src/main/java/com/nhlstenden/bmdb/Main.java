@@ -19,6 +19,12 @@ public class Main extends Application {
 
         //Map<String, String[]> list = DatabaseConnection.getInstance().query("");
 
+        ConcreteObservable observable = new ConcreteObservable();
+        ConcreteObserver observer1 = new ConcreteObserver(observable);
+        ConcreteObserver observer2 = new ConcreteObserver(observable);
+
+        observable.notifier();
+
         launch(args);
     }
 
