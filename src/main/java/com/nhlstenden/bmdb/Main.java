@@ -33,6 +33,7 @@ public class Main extends Application {
 
         Scene sc1 = SceneFactory.createTempScene("Welcome!");
 
+        Scene scq0 = SceneFactory.createQuestionScreen("Question Screen", "question_0");
         Scene scq1 = SceneFactory.createQuestionScreen("Question Screen", "question_1");
         Scene scq2 = SceneFactory.createQuestionScreen("Question Screen", "question_2");
         Scene scq3 = SceneFactory.createQuestionScreen("Question Screen", "question_3");
@@ -42,11 +43,10 @@ public class Main extends Application {
         Scene scq7 = SceneFactory.createQuestionScreen("Question Screen", "question_7");
         Scene scq8 = SceneFactory.createQuestionScreen("Question Screen", "question_8");
         Scene scq9 = SceneFactory.createQuestionScreen("Question Screen", "question_9");
-        Scene scq10 = SceneFactory.createQuestionScreen("Question Screen", "question_10");
 
         Scene sc2 = SceneFactory.createTempScene("End");
 
-        SceneManager.getInstance().addScenes(sc1 , scq7, sc2);//scq1, scq2, scq3, scq4, scq5, scq6, scq7, scq8, scq9, scq10, sc2);
+        SceneManager.getInstance().addScenes(sc1, scq7, sc2);//scq1, scq2, scq3, scq4, scq5, scq6, scq7, scq8, scq9, scq10, sc2);
         SceneManager.getInstance().show();
     }
 
