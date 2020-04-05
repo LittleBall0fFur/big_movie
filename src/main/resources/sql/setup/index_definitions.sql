@@ -9,4 +9,4 @@ CREATE INDEX start_year_index ON public.title USING btree
 
 -- title$principals indices
 CREATE INDEX category_index ON public.title$principals USING btree
-	(category);
+    (category);
