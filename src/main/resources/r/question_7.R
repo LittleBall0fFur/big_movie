@@ -36,6 +36,6 @@ data <- executeQuery("
          title$genres.genre DESC;
 ");
 
-png(file='./plots/question_7.png');
+png(file='./plots/question_7.png', width = 480, height = 480);
 ggplot(data, aes(x=genre, y=average_rating, fill=genre)) + geom_bar(stat='identity');
 dev.off();
