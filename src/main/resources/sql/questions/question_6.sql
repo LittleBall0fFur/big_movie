@@ -2,7 +2,7 @@
 
 SELECT
     (title.start_year - person.birth_year) AS directors_age,
-    title$rating.average_rating,
+    title$rating.average_rating
 FROM
     title INNER JOIN title$rating    ON title.id = title$rating.title_id
           INNER JOIN title$directors ON title.id = title$directors.title_id
