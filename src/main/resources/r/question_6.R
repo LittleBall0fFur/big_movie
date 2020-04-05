@@ -18,4 +18,6 @@ data <- executeQuery("
         5000;
 ");
 
+png(filename='./plots/question_6.png');
 ggplot(data, aes(x=directors_age, y=average_rating)) + geom_point();
+dev.off();

@@ -20,4 +20,6 @@ data <- executeQuery("
 
 data$total_actors <- as.numeric(data$total_actors);
 
+png(filename='./plots/question_9.png');
 ggplot(data, aes(x=total_actors, y=average_rating)) + geom_point();
+dev.off();

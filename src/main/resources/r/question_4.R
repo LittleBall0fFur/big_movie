@@ -15,4 +15,6 @@ data <- executeQuery("
         title.start_year;
 ");
 
+png(filename='./plots/question_4.png');
 ggplot(data, aes(x=start_year, y=average_rating, colour = genre)) + geom_line();
+dev.off();
