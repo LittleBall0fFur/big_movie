@@ -3,15 +3,12 @@ package com.nhlstenden.bmdb;
 import com.nhlstenden.bmdb.database.DatabaseConnection;
 import com.nhlstenden.bmdb.gui.SceneFactory;
 import com.nhlstenden.bmdb.gui.SceneManager;
-import com.nhlstenden.bmdb.rcaller.RManager;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class Main extends Application {
 
@@ -46,7 +43,7 @@ public class Main extends Application {
 
         Scene sc2 = SceneFactory.createTempScene("End");
 
-        SceneManager.getInstance().addScenes(sc1, scq7, sc2);//scq1, scq2, scq3, scq4, scq5, scq6, scq7, scq8, scq9, scq10, sc2);
+        SceneManager.getInstance().addScenes(sc1, scq0, scq1, scq2, scq3, scq4, scq5, scq6, scq7, scq8, scq9, sc2);
         SceneManager.getInstance().show();
     }
 
