@@ -6,9 +6,6 @@ import com.github.rcaller.rstuff.RCode;
 import javafx.scene.image.Image;
 
 import java.io.*;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
