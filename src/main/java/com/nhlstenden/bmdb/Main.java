@@ -3,15 +3,12 @@ package com.nhlstenden.bmdb;
 import com.nhlstenden.bmdb.database.DatabaseConnection;
 import com.nhlstenden.bmdb.gui.SceneFactory;
 import com.nhlstenden.bmdb.gui.SceneManager;
-import com.nhlstenden.bmdb.rcaller.RManager;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class Main extends Application {
 
