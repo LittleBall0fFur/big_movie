@@ -1,4 +1,4 @@
-package com.nhlstenden.bmdb;
+package com.nhlstenden.bmdb.observerpattern;
 
 public interface Observer {
 
@@ -7,4 +7,10 @@ public interface Observer {
 
     // Attach with subject to observe
     public void setSubject(Subject sub);
+
+    // Get name of observer
+    public String getName();
+
+    // Get message send by subject
+    public String getMessage();
 }

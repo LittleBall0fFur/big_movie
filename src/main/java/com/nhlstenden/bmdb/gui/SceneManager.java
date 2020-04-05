@@ -1,9 +1,12 @@
 package com.nhlstenden.bmdb.gui;
 
+import com.nhlstenden.bmdb.observerpattern.Observer;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.util.ArrayList;
+
+import static com.nhlstenden.bmdb.Main.topic;
 
 public class SceneManager {
     public static SceneManager _instance = null;
@@ -55,11 +58,13 @@ public class SceneManager {
     public void next(){
         _currentScene = _currentScene+1 >= _scenes.size() ? 0 : _currentScene+1;
         _stage.setScene(_scenes.get(_currentScene));
+        topic.postMessage(Integer.toString(_currentScene));
     }
 
     public void previous(){
         _currentScene = _currentScene-1 < 0 ? _scenes.size()-1 : _currentScene-1;
         _stage.setScene(_scenes.get(_currentScene));
+        topic.postMessage(Integer.toString(_currentScene));
     }
 
     public void show(){
@@ -72,4 +77,11 @@ public class SceneManager {
         _stage.show();
     }
 
+    /**
+     * Get current scene
+     * @return scene id
+     */
+    public int getCurScene() {
+        return this._currentScene;
+    }
 }

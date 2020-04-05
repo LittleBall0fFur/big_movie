@@ -1,4 +1,4 @@
-package com.nhlstenden.bmdb;
+package com.nhlstenden.bmdb.observerpattern;
 
 public interface Subject {
 

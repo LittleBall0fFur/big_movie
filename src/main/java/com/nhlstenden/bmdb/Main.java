@@ -3,6 +3,9 @@ package com.nhlstenden.bmdb;
 import com.nhlstenden.bmdb.database.DatabaseConnection;
 import com.nhlstenden.bmdb.gui.SceneFactory;
 import com.nhlstenden.bmdb.gui.SceneManager;
+import com.nhlstenden.bmdb.observerpattern.MyTopic;
+import com.nhlstenden.bmdb.observerpattern.MyTopicSubscriber;
+import com.nhlstenden.bmdb.observerpattern.Observer;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -12,7 +15,8 @@ import java.net.URISyntaxException;
 
 public class Main extends Application {
 
-    private static MyTopic topic = new MyTopic();
+    public static MyTopic topic = new MyTopic();
+    public static String[] facts = new String[10];
 
     public static void main(String args[]) {
         System.out.println("Start application!");
@@ -24,27 +28,6 @@ public class Main extends Application {
 
         //Map<String, String[]> list = DatabaseConnection.getInstance().query("");
 
-        //create observers
-        Observer obj1 = new MyTopicSubscriber("Obj1");
-        Observer obj2 = new MyTopicSubscriber("Obj2");
-        Observer obj3 = new MyTopicSubscriber("Obj3");
-
-        //register observers to the subject
-        topic.register(obj1);
-        topic.register(obj2);
-        topic.register(obj3);
-
-        //attach observer to subject
-        obj1.setSubject(topic);
-        obj2.setSubject(topic);
-        obj3.setSubject(topic);
-
-        //check if any update is available
-        obj1.update();
-
-        //now send message to subject
-        topic.postMessage("New Message");
-
         launch(args);
     }
 
@@ -54,7 +37,7 @@ public class Main extends Application {
 
         Scene sc1 = SceneFactory.createTempScene("Welcome!");
 
-        Scene scq0 = SceneFactory.createQuestionScreen("Question Screen", "question_0");
+        /*Scene scq0 = SceneFactory.createQuestionScreen("Question Screen", "question_0");
         Scene scq1 = SceneFactory.createQuestionScreen("Question Screen", "question_1");
         Scene scq2 = SceneFactory.createQuestionScreen("Question Screen", "question_2");
         Scene scq3 = SceneFactory.createQuestionScreen("Question Screen", "question_3");
@@ -63,12 +46,21 @@ public class Main extends Application {
         Scene scq6 = SceneFactory.createQuestionScreen("Question Screen", "question_6");
         Scene scq7 = SceneFactory.createQuestionScreen("Question Screen", "question_7");
         Scene scq8 = SceneFactory.createQuestionScreen("Question Screen", "question_8");
-        Scene scq9 = SceneFactory.createQuestionScreen("Question Screen", "question_9");
+        Scene scq9 = SceneFactory.createQuestionScreen("Question Screen", "question_9");*/
 
         Scene sc2 = SceneFactory.createTempScene("End");
 
-        SceneManager.getInstance().addScenes(sc1, scq0, scq1, scq2, scq3, scq4, scq5, scq6, scq7, scq8, scq9, sc2);
+        SceneManager.getInstance().addScenes(sc1, /*scq0, scq1, scq2, scq3, scq4, scq5, scq6, scq7, scq8, scq9,*/ sc2);
         SceneManager.getInstance().show();
+
+        // create observer
+        Observer obj = new MyTopicSubscriber("obj1");
+
+        // register observer to the subject
+        topic.register(obj);
+
+        // attach observer to subject
+        obj.setSubject(topic);
     }
 
     @Override

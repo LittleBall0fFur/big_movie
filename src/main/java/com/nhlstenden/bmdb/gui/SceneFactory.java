@@ -1,5 +1,6 @@
 package com.nhlstenden.bmdb.gui;
 
+import com.nhlstenden.bmdb.observerpattern.Observer;
 import com.nhlstenden.bmdb.rcaller.RManager;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
@@ -19,6 +20,8 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
+import static com.nhlstenden.bmdb.Main.topic;
+
 public class SceneFactory {
 
     public static Scene createTempScene(String _title){
@@ -37,12 +40,17 @@ public class SceneFactory {
         Button buttonPrevious  = GuiFactory.createButton("Previous", GuiFactory.ButtonStyle.btn_primary, new EventHandler<MouseEvent>() {
             @Override public void handle(MouseEvent e) {
                 SceneManager.getInstance().previous();
+
+                displayMessageObserver(headerText);
             }
         });
         Text footerText = GuiFactory.createText("Move though the scene's by using these buttons!", Color.BLACK, 18);
+
         Button buttonNext = GuiFactory.createButton("Next", GuiFactory.ButtonStyle.btn_primary, new EventHandler<MouseEvent>() {
             @Override public void handle(MouseEvent e) {
                 SceneManager.getInstance().next();
+
+                displayMessageObserver(headerText);
             }
         });
 
@@ -108,6 +116,7 @@ public class SceneFactory {
         Button buttonNext = GuiFactory.createButton("Next", GuiFactory.ButtonStyle.btn_primary, new EventHandler<MouseEvent>() {
             @Override public void handle(MouseEvent e) {
                 SceneManager.getInstance().next();
+
             }
         });
 
@@ -130,5 +139,17 @@ public class SceneFactory {
         Scene sc = new Scene(panel);
         sc.getStylesheets().add("org/kordamp/bootstrapfx/bootstrapfx.css");
         return sc;
+    }
+
+    /**
+     * Displays message of observer
+     * @param Text text component
+     */
+    private static void displayMessageObserver(Text txt) {
+        for (Observer obj : topic.observers) {
+            if (obj.getName() == "obj1") {
+                System.out.println("Message from observer = " + obj.getMessage());
+            }
+        }
     }
 }

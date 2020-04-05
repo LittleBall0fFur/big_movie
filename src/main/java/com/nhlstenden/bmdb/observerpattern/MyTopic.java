@@ -1,11 +1,11 @@
-package com.nhlstenden.bmdb;
+package com.nhlstenden.bmdb.observerpattern;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class MyTopic implements Subject {
 
-    private List<Observer> observers;
+    public List<Observer> observers;
     private String message;
     private boolean changed;
     private final Object MUTEX= new Object();
@@ -13,6 +13,11 @@ public class MyTopic implements Subject {
     public MyTopic(){
         this.observers=new ArrayList<>();
     }
+
+    /**
+     * Registers observer to subject
+     * @param obj observer
+     */
     @Override
     public void register(Observer obj) {
         if(obj == null) throw new NullPointerException("Null Observer");
@@ -21,6 +26,10 @@ public class MyTopic implements Subject {
         }
     }
 
+    /**
+     * Unregisteres observer from subject
+     * @param obj observer
+     */
     @Override
     public void unregister(Observer obj) {
         synchronized (MUTEX) {
@@ -28,9 +37,13 @@ public class MyTopic implements Subject {
         }
     }
 
+    /**
+     * Notifies all observers attached to subject
+     */
     @Override
     public void notifyObservers() {
         List<Observer> observersLocal = null;
+
         //synchronization is used to make sure any observer registered after message is received is not notified
         synchronized (MUTEX) {
             if (!changed)
@@ -49,7 +62,10 @@ public class MyTopic implements Subject {
         return this.message;
     }
 
-    //method to post message to the topic
+    /**
+     * Posts message to topic and notify observers
+     * @param msg message
+     */
     public void postMessage(String msg){
         System.out.println("Message Posted to Topic:"+msg);
         this.message=msg;
