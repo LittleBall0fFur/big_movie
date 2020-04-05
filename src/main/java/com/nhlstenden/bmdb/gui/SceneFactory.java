@@ -1,5 +1,6 @@
 package com.nhlstenden.bmdb.gui;
 
+import com.nhlstenden.bmdb.rcaller.RManager;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -12,7 +13,11 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import org.kordamp.bootstrapfx.scene.layout.Panel;
 
-import java.io.FileInputStream;
+import java.io.IOException;
+import java.net.URISyntaxException;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 
 public class SceneFactory {
 
@@ -41,7 +46,6 @@ public class SceneFactory {
             }
         });
 
-
         // add objects to contents
         contentHeader.setCenter(headerText);
         contentFooter.setLeft(buttonPrevious);
@@ -58,7 +62,7 @@ public class SceneFactory {
         return sc;
     }
 
-    public static Scene createQuestionScreen(String _title, String _imageLocation, String _text){
+    public static Scene createQuestionScreen(String _title, String _plotName) throws URISyntaxException, IOException {
         // create panel
         Panel panel = GuiFactory.createPanel(GuiFactory.PanelStyle.panel_primary);
 
@@ -72,7 +76,7 @@ public class SceneFactory {
 
         ImageView graphImage = null;
         try{
-            Image imageDisplay = new Image(new FileInputStream("graph.png"));
+            Image imageDisplay = RManager.getRPlot(_plotName);
             graphImage = new ImageView(imageDisplay);
 
             graphImage.setFitHeight(450);
@@ -84,13 +88,15 @@ public class SceneFactory {
         }
 
         // TODO: add this to GuiFactory with proper size
-        TextArea cssEditorFld = new TextArea("Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.");
+        String question_text = Files.readString(Paths.get(SceneFactory.class.getClassLoader().getResource("scene_texts/" + _plotName + ".txt").toURI()), StandardCharsets.UTF_8);
+        TextArea cssEditorFld = new TextArea(question_text);
         cssEditorFld.setPrefRowCount(10);
         cssEditorFld.setPrefColumnCount(100);
         cssEditorFld.setWrapText(true);
         cssEditorFld.setPrefWidth(350);
         cssEditorFld.setEditable(false);
         cssEditorFld.setBorder(null);
+
 
         // create footer buttons and text
         Button buttonPrevious  = GuiFactory.createButton("Previous", GuiFactory.ButtonStyle.btn_primary, new EventHandler<MouseEvent>() {
@@ -125,5 +131,4 @@ public class SceneFactory {
         sc.getStylesheets().add("org/kordamp/bootstrapfx/bootstrapfx.css");
         return sc;
     }
-
 }
