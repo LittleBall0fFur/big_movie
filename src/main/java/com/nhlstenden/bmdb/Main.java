@@ -95,7 +95,7 @@ public class Main extends Application {
         tm.schedule(task, 0, 1000);
 
         // init scene manager and add loading scene
-        SceneManager.getInstance().init(_stage, "Windows Title", 800, 600, false);
+        SceneManager.getInstance().init(_stage, "Windows Title", 800, 800, false);
         Scene scloading = SceneFactory.createLoadingScreen("Loading...", progressIndicator);
 
         SceneManager.getInstance().activateLoading(scloading);

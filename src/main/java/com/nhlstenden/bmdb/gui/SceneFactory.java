@@ -25,6 +25,12 @@ import static com.nhlstenden.bmdb.Main.topic;
 
 public class SceneFactory {
 
+    private static Text funText;
+
+    static{
+        funText = GuiFactory.createText("test", Color.BLACK, 18);
+    }
+
     public static Scene createTempScene(String _title){
         // create panel
         Panel panel = GuiFactory.createPanel(GuiFactory.PanelStyle.panel_primary);
@@ -58,7 +64,7 @@ public class SceneFactory {
         // add objects to contents
         contentHeader.setCenter(headerText);
         contentFooter.setLeft(buttonPrevious);
-        contentFooter.setCenter(footerText);
+        contentFooter.setCenter(funText);
         contentFooter.setRight(buttonNext);
 
         // add content menus to panel
@@ -125,10 +131,11 @@ public class SceneFactory {
         //Read the analysis text file and set it in the text object of the scene
         String question_text = "blah"; //Files.readString(Paths.get(SceneFactory.class.getClassLoader().getResource("scene_texts/" + _plotName + ".txt").toURI()), StandardCharsets.UTF_8);
         TextArea cssEditorFld = new TextArea(question_text);
-        cssEditorFld.setPrefRowCount(10);
+        cssEditorFld.setPrefRowCount(5);
         cssEditorFld.setPrefColumnCount(100);
         cssEditorFld.setWrapText(true);
-        cssEditorFld.setPrefWidth(350);
+        cssEditorFld.setPrefWidth(300);
+        cssEditorFld.setMaxHeight(300);
         cssEditorFld.setEditable(false);
         cssEditorFld.setBorder(null);
 
@@ -158,7 +165,7 @@ public class SceneFactory {
         content.setRight(cssEditorFld);
 
         contentFooter.setLeft(buttonPrevious);
-        contentFooter.setCenter(footerText);
+        contentFooter.setCenter(funText);
         contentFooter.setRight(buttonNext);
 
         // add content menus to panel
@@ -179,6 +186,7 @@ public class SceneFactory {
         for (Observer obj : topic.observers) {
             if (obj.getName() == "obj1") {
                 System.out.println("Message from observer = " + obj.getMessage());
+                funText.setText(obj.getMessage());
             }
         }
     }
