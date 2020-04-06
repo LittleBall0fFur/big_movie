@@ -104,7 +104,7 @@ PredictRocTree<- predict(tree, newdata = TestDataVraag4)
 ROCTree <- prediction(PredictRocTree[,2], TestDataVraag4$avg_rating)
 ROCPerformanceTree <- performance(ROCTree, "tpr", "fpr")
 
-png(filename='./plots/question_3ROC.png');
+png(filename='./plots/question_3.png', width = 480, height = 480);
 plot(ROCPerformanceTree, colorize=TRUE)
 abline(0,1)
 dev.off();

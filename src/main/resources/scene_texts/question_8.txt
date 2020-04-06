@@ -1,0 +1,1 @@
+Gelijk valt te zien dat logischerwijs het genre News het meeste aantal seizoenen heeft gemiddeld van alle genres. Echter, is dit zoals te verwachten aangezien dit dagelijks word uitgezonden. Hiernaast valt te zien dat Adult en Sport gelijk staan als genres met de een na grootste hoeveelheid seizoenen gemiddeld. Daarna piekt het genre Talk-Show als derde.

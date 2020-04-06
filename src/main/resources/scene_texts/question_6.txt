@@ -1,0 +1,1 @@
+Er is volgens het scatter plot geen verband te vinden tussen de leeftijd van de regiseur en de score van de film of serie. Er kan wel gezien worden dat de meeste regiseurs tussen de 25 en 65 zijn en een gemiddelde score krijgen van 6 tot 7.
