@@ -1,5 +1,6 @@
 package com.nhlstenden.bmdb.gui;
 
+import com.nhlstenden.bmdb.database.DatabaseConnection;
 import com.nhlstenden.bmdb.observerpattern.Observer;
 import com.nhlstenden.bmdb.rcaller.RManager;
 import javafx.event.EventHandler;
@@ -115,16 +116,19 @@ public class SceneFactory {
         // create header text
         Text headerText = GuiFactory.createText(_title, Color.BLACK, 20);
 
-        ImageView graphImage = null;
-        try{
-            Image imageDisplay = RManager.getRPlot(_plotName);
-            graphImage = new ImageView(imageDisplay);
 
-            graphImage.setFitHeight(450);
-            graphImage.setFitWidth(350);
-            graphImage.setPreserveRatio(true);
-        }catch(Exception e){
-            System.out.println(e);
+        ImageView graphImage = null;
+        if(_plotName != "question_0" && _plotName != "question_1" && _plotName != "question_2") {
+            try {
+                Image imageDisplay = RManager.getRPlot(_plotName);
+                graphImage = new ImageView(imageDisplay);
+
+                graphImage.setFitHeight(450);
+                graphImage.setFitWidth(350);
+                graphImage.setPreserveRatio(true);
+            } catch (Exception e) {
+                System.out.println(e);
+            }
         }
 
         // TODO: add this to GuiFactory with proper size
@@ -161,7 +165,53 @@ public class SceneFactory {
         // add objects to contents
         contentHeader.setCenter(headerText);
 
-        content.setLeft(graphImage);
+        if(_plotName != "question_0" && _plotName != "question_1" && _plotName != "question_2"){
+            content.setLeft(graphImage);
+        }else{
+            String value = "";
+            switch (_plotName){
+                case "question_0":
+                    value = DatabaseConnection.getInstance().query("SELECT \n" +
+                            "    COUNT(Title.primary_title) AS Total_series \n" +
+                            "FROM \n" +
+                            "    Title,\n" +
+                            "    Person,\n" +
+                            "    Person$titles \n" +
+                            "WHERE\n" +
+                            "    Person.name = 'Woody Allen'         AND\n" +
+                            "    Person.professions LIKE '%act%'     AND\n" +
+                            "    (Person$titles.title_id = Title.id) AND\n" +
+                            "    (Person$titles.person_id = Person.id);").get("total_series")[0].toString();
+                    content.setLeft(GuiFactory.createText(value, Color.BLACK, 40));
+                    break;
+                case "question_1":
+                    value = DatabaseConnection.getInstance().query("SELECT\n" +
+                            "    le.person_id,\n" +
+                            "    re.person_id\n" +
+                            "FROM\n" +
+                            "    title$principals AS le INNER JOIN title$principals AS re ON le.title_id = re.title_id\n" +
+                            "WHERE\n" +
+                            "    le.job LIKE '%act%' AND re.job LIKE '%act%' AND le.person_id <> re.person_id;").get("person_id")[0].toString();
+                    content.setLeft(GuiFactory.createText(value, Color.BLACK, 40));
+                    break;
+                case "question_2":
+                    value = DatabaseConnection.getInstance().query("SELECT\n" +
+                            "    title.primary_title,\n" +
+                            "    COUNT(title$genres.genre)\n" +
+                            "FROM\n" +
+                            "    title LEFT JOIN episode ON title.id = episode.id\n" +
+                            "    INNER JOIN title$genres ON title.id = title$genres.title_id\n" +
+                            "WHERE\n" +
+                            "    title.primary_title LIKE '%beer%' AND title.start_year BETWEEN 1990 AND date_part('year', CURRENT_DATE)\n" +
+                            "GROUP BY\n" +
+                            "    title$genres.genre, title.primary_title;").get("count")[0].toString();
+                    content.setLeft(GuiFactory.createText(value, Color.BLACK, 40));
+                    break;
+                default:
+                    break;
+            }
+            System.out.println("value: " + value);
+        }
         content.setRight(cssEditorFld);
 
         contentFooter.setLeft(buttonPrevious);
