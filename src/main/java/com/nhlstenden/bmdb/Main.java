@@ -80,7 +80,7 @@ public class Main extends Application {
 
                     Scene sc2 = SceneFactory.createTempScene("End");
 
-                    SceneManager.getInstance().addScenes(sc1, scq0, sc1, scq0, scq1, scq2, scq3, scq4, scq5, scq6, scq7, scq8, scq9, sc2);
+                    SceneManager.getInstance().addScenes(sc1, scq0, scq1, scq2, scq3, scq4, scq5, scq6, scq7, scq8, scq9, sc2);
                     Platform.runLater(new Runnable() {
                         @Override public void run() {
                             SceneManager.getInstance().show();

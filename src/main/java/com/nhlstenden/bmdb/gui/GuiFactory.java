@@ -75,7 +75,7 @@ public class GuiFactory {
 
     public static Panel createPanel(PanelStyle _style){
         Panel pl = new Panel();
-        pl.getStyleClass().setAll("btn", _style.toString().replace('_', '-'));
+        pl.getStyleClass().add(_style.toString().replace('_', '-'));
 
         return pl;
     }
