@@ -171,15 +171,14 @@ public class SceneFactory {
             String value = "";
             switch (_plotName){
                 case "question_0":
-                    value = DatabaseConnection.getInstance().query("SELECT \n" +
+                    value = DatabaseConnection.getInstance().query("SELECT\n" +
                             "    COUNT(Title.primary_title) AS Total_series \n" +
                             "FROM \n" +
-                            "    Title,\n" +
-                            "    Person,\n" +
+                            "    Title, \n" +
+                            "    Person, \n" +
                             "    Person$titles \n" +
                             "WHERE\n" +
                             "    Person.name = 'Woody Allen'         AND\n" +
-                            "    Person.professions LIKE '%act%'     AND\n" +
                             "    (Person$titles.title_id = Title.id) AND\n" +
                             "    (Person$titles.person_id = Person.id);").get("total_series")[0].toString();
                     content.setLeft(GuiFactory.createText(value, Color.BLACK, 40));
