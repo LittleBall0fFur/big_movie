@@ -1,0 +1,1 @@
+Wat gezien kan worden is dat er geen verband ligt tussen de hoeveelheid acteurs en de score van de films. Er kan wel gezien worden dat de meeste films een score krijgen van ongeveer een 4 en dat in deze films een hoop verschillende aantallen acteurs meespelen.
